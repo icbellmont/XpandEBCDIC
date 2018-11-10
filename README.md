@@ -54,5 +54,6 @@ It takes as input argument the format file in plain text, structured as indicate
  * @author: IcBellmónt 
  * @version: 05/12/2018/Initial
  * @see <a href = "https://www.ibm.com/support/knowledgecenter/SSQ2R2_14.0.0/com.ibm.ent.cbl.zos.doc/PGandLR/ref/rlddecom.html" > www.ibm.com/support </a>
+ *  http://www.3480-3590-data-conversion.com/article-signed-fields.html
  *
  */
