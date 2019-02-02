@@ -651,7 +651,9 @@ public static String BytesToHex(byte[] bIn) {
     return builder.toString();
 }
 
-
+/**
+ *  Solamente para tipo X 
+ **/	   
 public static byte[] CleanX00 (byte[] buf, String sFieldName) 
 {
      
@@ -660,6 +662,7 @@ public static byte[] CleanX00 (byte[] buf, String sFieldName)
     boolean bEsx00 = false;  
     byte[] bCleanedBuf = buf.clone();
     int iPosB = 0;
+    int iDecimalValue = 0;
 
     for (byte b:buf)
     {
@@ -671,6 +674,34 @@ public static byte[] CleanX00 (byte[] buf, String sFieldName)
         if (sFieldName.equals("ALFPRIAPEL")) b = 0x40;
 		if (sFieldName.equals("ALFSEGAPEL")) b = 0x40;
 		if (sFieldName.equals("ALFNOMBRE"))  b = 0x40;
+		if (sFieldName.equals("TXTDATOPONCH"))  b = 0x40;
+		
+//		if (b == 0x15 ) {
+//			
+//			int iCompared = Byte.compare(b, (byte) 0x20);
+//	        System.out.println(" compared " + iCompared ); 
+//			
+//	        if (iCompared < 0) {			 
+//    		    b = 0x40;    
+//	        };
+//        };	
+        
+//        int iCompared = Byte.compare(b, (byte) 0x20);
+//        
+//        byte[] lb = new byte[]{1,0};
+//        lb[0] = Byte.valueOf(b);
+//         
+//        System.out.println(" ......................................compared "+ BytesToHex( lb) + " 0x20 " + iCompared ); 
+//        
+//        if (iCompared > 0) {			 
+//		    b = 0x40;    
+//        };      
+		
+		iDecimalValue = Byte.valueOf(b);
+		if (iDecimalValue < 32 & iDecimalValue > 0) {
+			System.out.printf(" ...................................... <32 !! CHANGED " + iDecimalValue + " " + b); System.out.format("  0x%02X \n", b);  
+		    b = 0x40;    
+        };      
 		
         sb.append(Integer.toString(b));
         bCleanedBuf[iPosB] = b;
